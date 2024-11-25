@@ -1,8 +1,47 @@
+// Smoothie Class
+class Smoothie {
+    constructor(name, fruits = [], greens = [], milk = null, sweeteners = []) { //constructor with default values
+        this.name = name;
+        this.fruits = fruits;
+        this.greens = greens;
+        this.milk = milk;
+        this.sweeteners = sweeteners;
+    }
+
+    // Method to generate a summary for the smoothie
+    generateSummary() {
+        return `
+            <h2>Your ${this.name} smoothie is ready now!</h2>
+            ${this.greens.length ? `<p><strong>Greens:</strong> ${this.greens.join(", ")}</p>` : ""}
+            ${this.fruits.length ? `<p><strong>Fruits:</strong> ${this.fruits.join(", ")}</p>` : ""}
+            <p><strong>Milk:</strong> ${this.milk || "No milk selected"}</p>
+            <p><strong>Sweetener:</strong> ${this.sweeteners.join(", ") || "No sweetener selected"}</p>
+            <p><strong>Total Cost:</strong> $${this.calculateCost()}</p>
+        `;
+    }
+    calculateCost() {
+        const prices = { //an object with prices for each ingredient
+            fruits: { Banana: 1.0, Strawberry: 1.5, Mango: 2.0, Blueberry: 2.5, Apple: 1.2, Pineapple: 1.8, Kiwi: 2.0, Pear: 1.5 },
+            greens: { Spinach: 1.0, Kale: 1.2, Celery: 0.8, Cucumber: 0.9 },
+            milk: { "Regular Milk": 0.5, "Almond Milk": 1.0, "Coconut Milk": 1.2, "Soy Milk": 0.8, "Oat Milk": 0.9 },
+            sweeteners: { Honey: 0.5, Sugar: 0.2, "Maple Syrup": 0.7 }
+        };
+
+        let totalCost = 0; // initialize total cost to 0
+
+        // Calculate the cost of each category
+        this.fruits.forEach(fruit => totalCost += prices.fruits[fruit] || 0); // add the price of the fruit in the total cost or if fruit is not found in the prices object, add 0 to totalCost
+        this.greens.forEach(green => totalCost += prices.greens[green] || 0); // add the price of the greens in the total cost or if green is not found in the prices object, add 0 to totalCost
+        if (this.milk) totalCost += prices.milk[this.milk] || 0; // add the price of milk in the prices object to totalCost, or 0 if milk is not found
+        this.sweeteners.forEach(sweetener => totalCost += prices.sweeteners[sweetener] || 0); // add the price of the sweetener in the total cost or if sweetener is not found in
+
+        return totalCost.toFixed(2); // Return cost formatted to 2 decimal places
+    }
+}
 let isClassicVisible = false;  // making the visibility of the classic Smoothy false
 let isGreenVisible = false; //also of green Smoothy
 function showClassicFruit() {  //funciotn to generate the classic fruit smoothy content
     const classicFruit = document.getElementById("Classic-fruit");  //getting the classic fruit element and storing it in the variable
-
     if (isClassicVisible) { //if the classic fruit is visible
         classicFruit.innerHTML = `<h2>Classic-fruit smoothie</h2>`;  //show h2
         isClassicVisible = false; //making the visibility of the classic Smoothy false
@@ -72,14 +111,9 @@ function submitClassicSmoothie() {
 
 
     //storing all the value user selected into a variable summary
-    const summary = `
-        <h2>your ${smoothieName} smoothy is ready now</h2>
-        <p><strong>Fruits:</strong> ${selectedFruits.join(", ")}</p>
-        <p><strong>Milk:</strong> ${selectedMilk || "No milk selected"}</p>
-        <p><strong>Sweetener:</strong> ${selectedSweeteners.join(", ") || "No sweetener selected"}</p>
-    `;
-    //adding this summary in the summary div.
-    document.getElementById('summary').innerHTML = summary;
+    const smoothie = new Smoothie(smoothieName, selectedFruits, [], selectedMilk, selectedSweeteners);
+    document.getElementById('summary').innerHTML = smoothie.generateSummary();
+    //adding this summary in the summary div
 }
 
 //similar fucntion to generate the content for the green smoothy
@@ -157,12 +191,6 @@ function submitGreenSmoothie() {
         return;
     }
 
-    const summary = `
-        <h2>Your ${smoothieName} smoothy is now ready!</h2>
-        <p><strong>Greens:</strong> ${selectedGreens.join(", ") || "No greens selected"}</p>
-        <p><strong>Fruits:</strong> ${selectedFruits.join(", ") || "No fruits selected"}</p>
-        <p><strong>Milk:</strong> ${selectedMilk || "No milk selected"}</p>
-        <p><strong>Sweetener:</strong> ${selectedSweeteners.join(", ") || "No sweetener selected"}</p>
-    `;
-    document.getElementById('summary').innerHTML = summary;
+    const smoothie = new Smoothie(smoothieName, selectedFruits, selectedGreens, selectedMilk, selectedSweeteners);
+    document.getElementById('summary').innerHTML = smoothie.generateSummary();
 }
