@@ -1,0 +1,105 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    font-size: 1.125rem; /* Increased font size for general text */
+}
+
+header {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0; /* Slightly increased padding for header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Increased header font size */
+}
+
+form {
+    padding: 2rem;
+    max-width: 1000px; /* Increased maximum width */
+    margin: auto;
+}
+
+/* Section Styles */
+.section {
+    font: 1.25rem; /* Slightly larger font for sections */
+    margin-bottom: 1.5rem;
+    padding: 1.5rem; /* Increased padding */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem; /* Slightly larger labels */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2); /* Makes the checkboxes and radio buttons larger */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem; /* Increased padding for better readability */
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.1rem; /* Increased input text size */
+}
+
+button {
+    display: inline-block;
+    padding: 0.75rem 2rem; /* Larger button padding */
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.125rem; /* Increased font size for buttons */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Summary Section */
+#summary {
+    margin-top: 2rem;
+    padding: 2rem; /* Increased padding for better spacing */
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 1.2rem; /* Increased font size for summary text */
+}
+
+#summary h2 {
+    margin: 0 0 1rem 0;
+    color: #2e7d32;
+    font-size: 1.5rem; /* Larger summary header font size */
+}
+
+#summary p {
+    margin: 0.75rem 0; /* Increased spacing between paragraphs */
+}
